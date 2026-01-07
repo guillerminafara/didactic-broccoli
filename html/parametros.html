@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta empleado por DNI</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: antiquewhite;
+
+        }
+        h2{
+            text-align: center;
+        }
+
+        form {
+
+            color: rgb(13, 13, 133);
+            font-weight: bold;
+        }
+
+        input {
+            border-radius: 10px;
+            background-color: aliceblue;
+
+        }
+
+        button {
+            border-radius: 20px;
+            padding: 6px 12px;
+            background-color: rgb(13, 13, 133);
+            color: aliceblue;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25vh;
+            width: 50vh;
+            background-color: aliceblue;
+            border-radius: 20px;
+            margin: 10px 40%;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Búsqueda de Empleado por DNI</h2>
+    <form action="servlet">
+        <div>
+            <label>Ingresa el DNI: <input type="number" name="DNIinput"></label>
+            <button type="submit">Buscar</button>
+        </div>
+
+    </form>
+</body>
+
+</html>
