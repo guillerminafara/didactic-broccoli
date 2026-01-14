@@ -8,11 +8,12 @@
     <style>
         body {
             font-family: sans-serif;
-            background-color: antiquewhite;
+            background-color: #FFAD00;
 
         }
         h2{
             text-align: center;
+            margin-left: 15rem;
         }
 
         form {
@@ -52,7 +53,7 @@
 
 <body>
     <h2>Búsqueda de Empleado por DNI</h2>
-    <form action="servlet">
+    <form action="servlet" method="get">
         <div>
             <label>Ingresa el DNI: <input type="number" name="DNIinput"></label>
             <button type="submit">Buscar</button>
