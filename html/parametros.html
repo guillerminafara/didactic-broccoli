@@ -11,7 +11,8 @@
             background-color: #FFAD00;
 
         }
-        h2{
+
+        h2 {
             text-align: center;
             margin-left: 15rem;
         }
@@ -52,10 +53,12 @@
 </head>
 
 <body>
-    <h2>Búsqueda de Empleado por DNI</h2>
+    <h2>Creación de empleados:</h2>
     <form action="servlet" method="get">
         <div>
-            <label>Ingresa el DNI: <input type="number" name="DNIinput"></label>
+            <label>Ingresa el nombre del empleado <input type="text" name="nombre"></label> <br>
+            <label>Ingresa el DNI: <input type="number" name="DNIinput"></label><br>
+            <label>Ingresa el sueldo: <input type="text" name="sueldo"></label><br><br>
             <button type="submit">Buscar</button>
         </div>
 
