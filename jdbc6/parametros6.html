@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #111;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #f0c14b;
+            border: 1px solid #a88734;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #e2b33c;
+        }
+
+        .login-container .forgot {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-container .forgot a {
+            color: #0066c0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-container .forgot a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Sign-In</h2>
+        <form action="servlet" method="post">
+            <label for="email">E-mail or phone number</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email or phone" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <input type="submit" value="Sign in">
+        </form>
+        <div class="forgot">
+            <a href="#">Forgot your password?</a>
+        </div>
+    </div>
+</body>
+</html>
