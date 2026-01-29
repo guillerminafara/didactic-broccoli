@@ -45,11 +45,10 @@ create table compra_producto (
     foreign key (id_producto) references producto(id_producto)
 );
 
-insert into producto (nombre, descripcion, precio) values
-('Canela de Ceylán', 'Canela en polvo 80g Bio Cesta', 5.35),
-('Jengibre en polvo', 'Jengibre en polvo 80g Bio Cesta', 3.49),
-('Cúrcuma en polvo', 'Cúrcuma en polvo 80g Bio Cesta', 5.19),
-('Pimentón Ducle', 'Pimentón Dulce 38g Artemis Bio', 2.85),
-('Comino molido', 'Comino molido 80g Bio Cesta', 3.19),
-('Curry en polvo', 'Curry en polvo 80g Vegetalia', 5.10);
-
+insert into producto (nombre, descripcion, imagen,precio) values
+('Canela de Ceylán', 'Canela en polvo 80g Bio Cesta',"https://www.herbolarionavarro.es/media/catalog/product/9/9/99706068_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024" ,5.35),
+('Jengibre en polvo', 'Jengibre en polvo 80g Bio Cesta', "https://www.herbolarionavarro.es/media/catalog/product/9/9/99706066_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024",3.49),
+('Cúrcuma en polvo', 'Cúrcuma en polvo 80g Bio Cesta',"https://www.herbolarionavarro.es/media/catalog/product/9/9/99706067_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024" ,5.19),
+('Pimentón Ducle', 'Pimentón Dulce 38g Artemis Bio',"https://www.herbolarionavarro.es/media/catalog/product/8/4/8428201320017.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024", 2.85),
+('Comino molido', 'Comino molido 80g Bio Cesta', "https://www.herbolarionavarro.es/media/catalog/product/c/o/comino-negro-bio-45gr-.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024",3.19),
+('Curry en polvo', 'Curry en polvo 80g Vegetalia',"https://www.herbolarionavarro.es/media/catalog/product/9/9/99709083_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024", 5.10);

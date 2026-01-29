@@ -4,11 +4,11 @@ sesión, el sistema debe mostrar la lista de artículos que se venden, con su pr
  un control desplegable para elegir el número de unidades que se van a comprar. Una vez 
  que el usuario ha elegido el número de artículos de cada tipo que desea comprar, debe 
  pulsar el botón «comprar»; el sistema debe mostrar la lista de artículos, el número de
-  unidades y el precio total. Además, la página web debe mostrar los gastos de envío:
-   2 € + 1 € por artículo. La página web también debe mostrar la suma del total y los 
-   gastos de envío. Desde esta página web, el usuario debe poder volver a la tienda para 
-   añadir nuevos artículos a la lista de compra. Si el cliente pulsa «confirmar compra»,
-    debe aparecer un mensaje de agradecimiento.
+unidades y el precio total. Además, la página web debe mostrar los gastos de envío:
+2 € + 1 € por artículo. La página web también debe mostrar la suma del total y los 
+gastos de envío. Desde esta página web, el usuario debe poder volver a la tienda para 
+añadir nuevos artículos a la lista de compra. Si el cliente pulsa «confirmar compra»,
+debe aparecer un mensaje de agradecimiento.
 
  Los datos de compra deben introducirse en la base de datos en este momento. Hasta ahora,
  toda la información debería haberse almacenado en una sesión. A cada compra se le debe 
