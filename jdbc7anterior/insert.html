@@ -15,10 +15,10 @@
 
 <body>
     <h2>Ingresa los datos para agrgar al empleado</h2>
-    <form action="insert" method="post">
+    <form action="insertarServlet" method="post">
         <label for="dni">DNI: <input type="text" name="dni" required></label> <br> <br>
         <label for="nombre">Nombre: </label><input type="text" name="nombre" required><br> <br>
-        <label for="sueldo">Sueldo: <input type="text" name="sueldo" placeholder="000.00" required></label><br> <br>
+        <label for="sueldo">Sueldo: <input type="number" name="sueldo" placeholder="000.00" required></label><br> <br>
 
         <input type="submit" value="Agregar empleado">
     </form>

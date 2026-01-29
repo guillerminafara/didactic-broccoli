@@ -17,7 +17,8 @@ public class BuscarServlet extends HttpServlet {
         String titulo = "Búsqueda de Empleado por DNI";
         // retrieve DNI parameter from the request
         String dniParametro = peticion.getParameter("dni");
-         salida.println("<TITLE>" + titulo + "</TITLE>" +
+   
+        salida.println("<TITLE>" + titulo + "</TITLE>" +
                 "<BODY>\n" +
                 "<H1 ALIGN=CENTER>" + titulo + "</H1>\n" +
                 "<TABLE BORDER=1 ALIGN=CENTER>\n" +
