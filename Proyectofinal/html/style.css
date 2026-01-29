@@ -1,0 +1,61 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #EAEDED;
+}
+
+/* Header (Amazon-like colors) */
+.header {
+    background-color: #131921;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FF9900;
+}
+
+.user-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Main container */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Product cards */
+.card {
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #B12704;
+}
+
+select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+}
