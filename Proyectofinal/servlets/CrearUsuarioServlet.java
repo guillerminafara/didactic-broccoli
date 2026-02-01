@@ -1,54 +1,58 @@
-
 import java.io.*;
 import java.sql.*;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.util.*;
 
 public class CrearUsuarioServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)
             throws ServletException, IOException {
+        try {
 
-        PrintWriter salida = respuesta.getWriter();
-        Connection miconexion = DBConnection.getConnection();
+            PrintWriter salida = respuesta.getWriter();
+            Connection miconexion = DBConnection.getConnection();
 
-        String emailInput = peticion.getParameter("email");
-        String passwordInput = peticion.getParameter("password");
-        String checkPasswordInput = peticion.getParameter("password2");
-        String nameInput = peticion.getParameter("name");
-        String surnameInput = peticion.getParameter("surname");
+            String emailInput = peticion.getParameter("email");
+            String passwordInput = peticion.getParameter("password");
+            String checkPasswordInput = peticion.getParameter("password2");
+            String nameInput = peticion.getParameter("name");
+            String surnameInput = peticion.getParameter("surname");
 
-        if (passwordInput.equals(checkPasswordInput)) {
-            String sql = "INSERT INTO usuario(nombre, apellido, email, contrasena) values (?,?,?,?)";
-            PreparedStatement ps;
-            ps = miconexion.prepareStatement(sql);
-            ps.setString(1, nameInput);
-            ps.setString(2, surnameInput);
-            ps.setString(3, emailInput);
-            ps.setString(4, passwordInput);
+            if (passwordInput.equals(checkPasswordInput)) {
+                String sql = "INSERT INTO usuario(nombre, apellido, email, contrasena) values (?,?,?,?)";
+                PreparedStatement ps;
+                ps = miconexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, nameInput);
+                ps.setString(2, surnameInput);
+                ps.setString(3, emailInput);
+                ps.setString(4, passwordInput);
+                System.out.println("INSERTANDO USUARIO: " + emailInput);
 
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                int id_usuario = rs.getInt(1);
-                Cookie cookieUser = new Cookie("id_usuario", String.valueOf(id_usuario));
-                Cookie cookieUserName = new Cookie(nameInput, String.valueOf(nameInput));
+                int filas = ps.executeUpdate();
+                if (filas > 0) {
+                    ResultSet rs = ps.getGeneratedKeys();
+                    if (rs.next()) {
+                        int id_usuario = rs.getInt(1);
+                        Cookie cookieUser = new Cookie("id_usuario", String.valueOf(id_usuario));
+                        Cookie cookieUserName = new Cookie("nombre", nameInput);
 
-                cookieUser.setMaxAge(60 * 60 * 24 * 30);
-                cookieUser.setPath("/");
-                cookieUserName.setMaxAge(60 * 60 * 24 * 30);
-                cookieUserName.setPath("/");
-                respuesta.addCookie(cookieUser);
-                respuesta.addCookie(cookieUserName);
+                        cookieUser.setMaxAge(60 * 60 * 24 * 30);
+                        cookieUser.setPath("/");
+                        cookieUserName.setMaxAge(60 * 60 * 24 * 30);
+                        cookieUserName.setPath("/");
+                        respuesta.addCookie(cookieUser);
+                        respuesta.addCookie(cookieUserName);
 
-                respuesta.sendRedirect(peticion.getContextPath() + "/paginaPrincipal.html");
+                        respuesta.sendRedirect(peticion.getContextPath() + "/paginaPrincipal");
+                    }
+                }
+
+            } else {
+                salida.println("<p>Las contraseñas deben coincidir</p>");
             }
-        } else {
-            salida.println("<p>Las contraseñas deben coincidir</p>");
+        } catch (Exception e) {
+            System.out.println(e);
         }
-
     }
 }
-//tareas: corroborar si es correcto agregar cookieName asi 
+// tareas: corroborar si es correcto agregar cookieName asi

@@ -14,11 +14,13 @@
             height: 100vh;
             margin: 0;
         }
+
         .logo {
-    font-size: 22px;
-    font-weight: bold;
-    color: #FF9900;
-}
+            font-size: 22px;
+            font-weight: bold;
+            color: #FF9900;
+        }
+
         .header {
             background-color: #131921;
             color: white;
@@ -28,12 +30,14 @@
             align-items: center;
             width: 100%;
         }
+
         main {
             display: flex;
             justify-content: center;
             align-items: center;
             flex: 1;
         }
+
         .login-container {
             background-color: #fff;
             padding: 40px;
@@ -76,6 +80,9 @@
         .login-container input[type="submit"]:hover {
             background-color: #e2b33c;
         }
+          .login-container button:hover {
+            background-color: #c13ce2;
+        }
 
         .login-container .forgot {
             text-align: center;
@@ -92,13 +99,17 @@
             text-decoration: underline;
         }
 
-        .login-container input.create {
+        .login-container button.create {
+
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
             margin-top: 10px;
             background-color: #ffa109;
             border: 1px solid #a0a0a0;
         }
-
-
     </style>
 </head>
 
@@ -122,9 +133,10 @@
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
                 <input type="submit" value="Sign in" formaction="PaginaPrincipal.html">
-                <input type="submit" value="Create a User" class="create" formaction="CreateUser.html">
 
             </form>
+                <button class="create" formaction="CreateUser.html">"Create a User"</button>
+
             <div class="forgot">
                 <a href="#">Forgot your password?</a>
             </div>

@@ -4,8 +4,11 @@ create table usuario (
     nombre varchar(30) not null,
     apellido varchar(30) not null,
     email varchar(30) not null unique,
-    contrasena varchar(30) not null,
+    contrasena varchar(30) not null
 );
+
+insert into usuario (nombre, apellido, email, contrasena) values
+('admin', 'admin', 'admin@admin.com', 'admin');
 insert into usuario (nombre, apellido, email, contrasena) values
 ('Juan', 'Perez', 'juanperez@mail.com', 'juan123');
 
