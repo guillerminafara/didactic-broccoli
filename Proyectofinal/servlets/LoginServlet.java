@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                 int id_usuario = misresultados.getInt("id_usuario");
                 String nombre = misresultados.getString("nombre");
                 Cookie cookieUser = new Cookie("id_usuario", String.valueOf(id_usuario));
-                Cookie cookieUserName = new Cookie("id_usuario", String.valueOf(id_usuario));
+                Cookie cookieUserName = new Cookie("nombre", String.valueOf(nombre));
 
                 cookieUser.setMaxAge(60 * 60 * 24 * 30);
                 cookieUser.setPath("/");
@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
                 respuesta.sendRedirect(peticion.getContextPath() + "/paginaPrincipal.html");
 
             } else {
-                salida.println("<h2>Login failed: invalid email or password.</h2>");
+                salida.println("<h2>Login failed: invalid email or password.</h2>");//ver otra forma 
 
             }
         } catch (Exception e) {

@@ -62,3 +62,56 @@
 	</url-mapping>
 	/paginaPrincipal
 </servlet-mapping>
+
+
+<servlet>
+	<servlet-name>
+		CartServlet
+	</servlet-name>
+	<servlet-class>
+		CartServlet
+	</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>
+		CartServlet
+	</servlet-name>
+	<url-mapping>
+	</url-mapping>
+	/CartServlet
+</servlet-mapping>
+
+
+<servlet>
+	<servlet-name>
+		ConfirmarCompraServlet
+	</servlet-name>
+	<servlet-class>
+		ConfirmarCompraServlet
+	</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>
+		ConfirmarCompraServlet
+	</servlet-name>
+	<url-mapping>
+	</url-mapping>
+	/ConfirmarCompraServlet
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>
+		AdminPedidosServlet
+	</servlet-name>
+	<servlet-class>
+		AdminPedidosServlet
+	</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>
+		AdminPedidosServlet
+	</servlet-name>
+	<url-mapping>
+	</url-mapping>
+	/adminPedidosServlet
+</servlet-mapping>

@@ -34,7 +34,7 @@ public class CrearUsuarioServlet extends HttpServlet {
             if (rs.next()) {
                 int id_usuario = rs.getInt(1);
                 Cookie cookieUser = new Cookie("id_usuario", String.valueOf(id_usuario));
-                Cookie cookieUserName = new Cookie("id_usuario", String.valueOf(id_usuario));
+                Cookie cookieUserName = new Cookie(nameInput, String.valueOf(nameInput));
 
                 cookieUser.setMaxAge(60 * 60 * 24 * 30);
                 cookieUser.setPath("/");

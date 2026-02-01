@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 import java.util.*;
 import util.DBConnection;
 
-public class AddToCartServlet extends HttpServlet {
+public class AddCartServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)
             throws ServletException, IOException {
@@ -15,13 +15,9 @@ public class AddToCartServlet extends HttpServlet {
         int productId = Integer.parseInt(peticion.getParameter("productId"));
         int quantity = Integer.parseInt(peticion.getParameter("quantity"));
         HtppSession session = peticion.getSession();
-        // if (productIdStr == null || quantityStr == null) {
-        // respuesta.sendRedirect(peticion.getContextPath() + "/index.jsp");
-        // return;
-        // }
-        //check if carrito session exist 
+
         List<ItemCarrito> carrito = (List<ItemCarrito>) session.getAttribute("carrito");
-//
+        //
         if (carrito == null) {
             carrito = new ArrayList<>();
         }
@@ -35,7 +31,7 @@ public class AddToCartServlet extends HttpServlet {
             }
         }
 
-        // retrieve the products from db 
+        // retrieve the products from db
         if (encontrado) {
             try {
                 Connection conn = DBConnection.getConnection();
@@ -45,26 +41,20 @@ public class AddToCartServlet extends HttpServlet {
                 ps.setInt(1, productId);
                 ResultSet rs = ps.executeQuery();
 
-                if (rs.next()) {
+                while (rs.next()) {
                     ItemCarrito item = new ItemCarrito(
                             productId,
                             rs.getString("nombre"),
                             rs.getDouble("precio"),
-                            quantity);
+                            quantity, rs.getString("imagen"));
                     carrito.add(item);
-                } else {
-                    // producto no existe
-                    respuesta.sendRedirect(peticion.getContextPath() + "/index.jsp?error=notfound");
-                    return;
                 }
-
-                // Crear o recuperar carrito de sesión
-                // Redirigir de vuelta (o a la página del carrito)
-                respuesta.sendRedirect(peticion.getContextPath() + "/cart.jsp");
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        session.setAttribute("carrito", carrito);
+        respuesta.sendRedirect("CartServlet");
     }
 }
