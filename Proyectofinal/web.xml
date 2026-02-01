@@ -1,0 +1,64 @@
+<servlet>
+	<servlet-name>
+		AddToCartServlet
+	</servlet-name>
+	<servlet-class>
+		AddToCartServlet
+	</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>
+		AddToCartServlet
+	</servlet-name>
+	<url-mapping>
+		/carrito
+	</url-mapping>
+</servlet-mapping>
+<servlet>
+	<servlet-name>
+		CrearUsuarioServlet
+	</servlet-name>
+	<servlet-class>
+		CrearUsuarioServlet
+	</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>
+		CrearUsuarioServlet
+	</servlet-name>
+	<url-mapping>
+		/signup
+	</url-mapping>
+</servlet-mapping>
+<servlet>
+	<servlet-name>
+		LoginServlet
+	</servlet-name>
+	<servlet-class>
+		LoginServlet
+	</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>
+		LoginServlet
+	</servlet-name>
+	<url-mapping>
+		/login
+	</url-mapping>
+</servlet-mapping>
+<servlet>
+	<servlet-name>
+		IndexPageServlet
+	</servlet-name>
+	<servlet-class>
+		IndexPageServlet
+	</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>
+		IndexPageServlet
+	</servlet-name>
+	<url-mapping>
+	</url-mapping>
+	/paginaPrincipal
+</servlet-mapping>

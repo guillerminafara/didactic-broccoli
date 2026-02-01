@@ -25,6 +25,7 @@ create table compra(
     foreign key (id_usuario) references usuario(id_usuario)
 );
 
+
 create table productos (
     id_producto int primary key auto_increment,
     nombre varchar(50) not null,
@@ -38,9 +39,9 @@ create table compra_producto (
     id_compra int,
     cantidad int not null, default 1,
     precio_unitario decimal(10,2) not null,
-   subtotal decimal(10,2) not null,
+   subtotal decimal(10,2) not null as cantidad * precio_unitario,
     foreign key (id_compra) references compra(id_compra),
-    references producto(id_producto)
+    foreign key (id_producto) references producto(id_producto)
 );
 
 insert into producto (nombre, descripcion, imagen,precio) values

@@ -11,7 +11,7 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)
             throws ServletException, IOException {
 
-        // respuesta.setContentType("text/html");
+        respuesta.setContentType("text/html");
         PrintWriter salida = respuesta.getWriter();
         // get form parameters sent from HTML login
         String emailInput = peticion.getParameter("email");
@@ -39,18 +39,15 @@ public class LoginServlet extends HttpServlet {
                 String email = misresultados.getString("email");
                 int id_usuario = misresultados.getInt("id_usuario");
                 String nombre = misresultados.getString("nombre");
-                Cookie cookieUser = new Cookie("id_usuario", String.valueOf(id_usuario));
-                Cookie cookieUserName = new Cookie("id_usuario", String.valueOf(id_usuario));
+                HttpSession session;
+                session = peticion.getSession(true);
+                if (session.isNew() == true) {
+                    session.setMaxInactiveInterval(30 * 60);
+                    session.setAttribute("id_usuario", id_usuario);
+                    session.setAttribute("nombre", nombre);
+                    session.setAttribute("email", email);
+                }
 
-                cookieUser.setMaxAge(60 * 60 * 24 * 30);
-                cookieUser.setPath("/");
-                respuesta.addCookie(cookieUser);
-
-                cookieUserName.setPath("/");
-                cookieUserName.setMaxAge(60 * 60 * 24 * 30);
-                
-                respuesta.addCookie(cookieUser);
-                respuesta.addCookie(cookieUserName);
                 respuesta.sendRedirect(peticion.getContextPath() + "/paginaPrincipal.html");
 
             } else {

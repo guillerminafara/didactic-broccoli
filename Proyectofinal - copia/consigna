@@ -1,0 +1,29 @@
+Programa una tienda web. Debe proporcionar un sistema de inicio de sesión para entrar 
+o, en su lugar, registrarse como nuevo usuario. Una vez que el usuario ha iniciado 
+sesión, el sistema debe mostrar la lista de artículos que se venden, con su precio y
+ un control desplegable para elegir el número de unidades que se van a comprar. Una vez 
+ que el usuario ha elegido el número de artículos de cada tipo que desea comprar, debe 
+ pulsar el botón «comprar»; el sistema debe mostrar la lista de artículos, el número de
+unidades y el precio total. Además, la página web debe mostrar los gastos de envío:
+2 € + 1 € por artículo. La página web también debe mostrar la suma del total y los 
+gastos de envío. Desde esta página web, el usuario debe poder volver a la tienda para 
+añadir nuevos artículos a la lista de compra. Si el cliente pulsa «confirmar compra»,
+debe aparecer un mensaje de agradecimiento.
+
+ Los datos de compra deben introducirse en la base de datos en este momento. Hasta ahora,
+ toda la información debería haberse almacenado en una sesión. A cada compra se le debe 
+ asignar un número de seguimiento único (puede consultar el último número en la base de 
+ datos y aumentarlo). El sistema debe utilizar formularios web. Debe crear la estructura 
+ de base de datos adecuada para dar soporte al sistema. 
+
+Desarrolle también una página web para el vendedor, para que pueda ver la lista de compras. 
+El vendedor accederá a su página web tras iniciar sesión en el sistema.
+
+El cliente deberá poder ver su lista de compras en el futuro, sin necesidad de iniciar 
+sesión. Para ello, guarde la identificación del cliente en una cookie (esta cookie no 
+es una cookie de sesión).
+
+Sube un documento con capturas de pantalla y código con comentarios en inglés, explicados.
+
+Graba un pequeño vídeo (mínimo 3 min, máximo 10 min) explicando cómo funciona en inglés; 
+explica el código; no olvides añadir comentarios al código en inglés.

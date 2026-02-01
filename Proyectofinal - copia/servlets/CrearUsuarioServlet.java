@@ -29,20 +29,9 @@ public class CrearUsuarioServlet extends HttpServlet {
             ps.setString(3, emailInput);
             ps.setString(4, passwordInput);
 
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                int id_usuario = rs.getInt(1);
-                Cookie cookieUser = new Cookie("id_usuario", String.valueOf(id_usuario));
-                Cookie cookieUserName = new Cookie("id_usuario", String.valueOf(id_usuario));
+            int rowAffect = ps.executeUpdate();
 
-                cookieUser.setMaxAge(60 * 60 * 24 * 30);
-                cookieUser.setPath("/");
-                cookieUserName.setMaxAge(60 * 60 * 24 * 30);
-                cookieUserName.setPath("/");
-                respuesta.addCookie(cookieUser);
-                respuesta.addCookie(cookieUserName);
-
+            if (rowAffect > 0) {
                 respuesta.sendRedirect(peticion.getContextPath() + "/paginaPrincipal.html");
             }
         } else {
@@ -51,4 +40,3 @@ public class CrearUsuarioServlet extends HttpServlet {
 
     }
 }
-//tareas: corroborar si es correcto agregar cookieName asi 

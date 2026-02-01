@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a User</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f3f3f3;
             display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FF9900;
+}
+        .header {
+            background-color: #131921;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        main {
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            flex: 1;
         }
-
         .login-container {
             background-color: #fff;
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             width: 350px;
         }
 
@@ -71,33 +91,45 @@
         .login-container .forgot a:hover {
             text-decoration: underline;
         }
+
         .login-container input.create {
             margin-top: 10px;
             background-color: #ffa109;
             border: 1px solid #a0a0a0;
         }
+
+
     </style>
 </head>
+
 <body>
-    <div class="login-container">
-        <h2>Sign up</h2>
-        <form action="servlet" method="post">
-            <label for="nombre">Enter your name:</label>
-            <input type="text"name="nombre" placeholder="name" required>
-            <label for="apellido">Enter your surname: <input type="text" name="apellido" placeholder="apellido"></label>
-            <label for="email">Enter your email:</label>
-            <input type="email" id="email" name="email" placeholder="ejemplo@mail.com" required>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">AmazingStore</div>
+        <!-- <div class="user-icon">
+            👤 -->
+        </div>
+    </header>
+    <main class="container">
+        <div class="login-container">
 
-            <label for="password">Enter your password:</label>
-            <input type="password" id="password" name="password" placeholder="password" required>
-            <label for="password2">Repeat the password</label>
-            <input type="password" id="password2" name="password2" placeholder="repeat your password" required>
+            <h2>Sign-In</h2>
+            <form action="servlet" method="post">
+                <label for="email">Enter youremail</label>
+                <input type="text" id="email" name="email" placeholder="example@mail.com" required>
 
-       
-            <input type="submit" value="Create a User" class="create" formaction="PaginaPrincipal.html">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-        </form>
-   
-    </div>
+                <input type="submit" value="Sign in" formaction="PaginaPrincipal.html">
+                <input type="submit" value="Create a User" class="create" formaction="CreateUser.html">
+
+            </form>
+            <div class="forgot">
+                <a href="#">Forgot your password?</a>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

@@ -1,61 +1,70 @@
-import model.Cart;
-import model.CartItem;
-import util.DBConnection;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.*;
+import util.DBConnection;
 
 public class AddToCartServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest peticion, HttpServletResponse respuesta) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)
+            throws ServletException, IOException {
 
-        String productIdStr = peticion.getParameter("productId");
-        String quantityStr = peticion.getParameter("quantity");
+        int productId = Integer.parseInt(peticion.getParameter("productId"));
+        int quantity = Integer.parseInt(peticion.getParameter("quantity"));
+        HtppSession session = peticion.getSession();
+        // if (productIdStr == null || quantityStr == null) {
+        // respuesta.sendRedirect(peticion.getContextPath() + "/index.jsp");
+        // return;
+        // }
+        //check if carrito session exist 
+        List<ItemCarrito> carrito = (List<ItemCarrito>) session.getAttribute("carrito");
+//
+        if (carrito == null) {
+            carrito = new ArrayList<>();
+        }
+        boolean encontrado = false;
 
-        if (productIdStr == null || quantityStr == null) {
-            respuesta.sendRedirect(peticion.getContextPath() + "/index.jsp");
-            return;
+        for (ItemCarrito item : carrito) {
+            if (item.getIdProducto() == productId) {
+                item.setCantidad(item.getCantidad() + quantity);
+                encontrado = true;
+                break;
+            }
         }
 
-        int productId;
-        int quantity;
-        try {
-            productId = Integer.parseInt(productIdStr);
-            quantity = Integer.parseInt(quantityStr);
-            if (quantity <= 0) quantity = 1;
-        } catch (NumberFormatException e) {
-            respuesta.sendRedirect(peticion.getContextPath() + "/index.jsp");
-            return;
-        }
+        // retrieve the products from db 
+        if (encontrado) {
+            try {
+                Connection conn = DBConnection.getConnection();
+                String sql = "SELECT nombre, precio FROM producto WHERE id_producto = ?";
 
-        // Obtener datos del producto de la BD (especialmente precio actual y nombre)
-        String sql = "SELECT nombre, precio FROM producto WHERE id_producto = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, productId);
+                ResultSet rs = ps.executeQuery();
 
-            ps.setInt(1, productId);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
+                if (rs.next()) {
+                    ItemCarrito item = new ItemCarrito(
+                            productId,
+                            rs.getString("nombre"),
+                            rs.getDouble("precio"),
+                            quantity);
+                    carrito.add(item);
+                } else {
                     // producto no existe
                     respuesta.sendRedirect(peticion.getContextPath() + "/index.jsp?error=notfound");
                     return;
                 }
-                String name = rs.getString("nombre");
-                BigDecimal price = rs.getBigDecimal("precio");
 
                 // Crear o recuperar carrito de sesión
-               
                 // Redirigir de vuelta (o a la página del carrito)
                 respuesta.sendRedirect(peticion.getContextPath() + "/cart.jsp");
-            }
 
-        } catch (Exception e) {
-            throw new ServletException(e);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.sql.*;
 import util.DBConnection;
@@ -6,17 +7,23 @@ import javax.servlet.http.*;
 import java.util.*;
 
 public class IndexPageServlet extends HttpServlet {
-    public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)throws ServletException, IOException {
+
+    public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)
+            throws ServletException, IOException {
         // set the response content type to HTML
         respuesta.setContentType("text/html");
-        PrintWriter salida = respuesta.getWriter();  // Writer used to send HTML output to the client
+        // Writer used to send HTML output to the client
+        PrintWriter salida = respuesta.getWriter();
         peticion.getDouble();
         try {
             Connection miconexion = DBConnection.getConnection();
-            String sqlSelect = "SELECT * FROM productos";// Prepare the SQL statement
+
+            // Prepare the SQL statement
+            String sqlSelect = "SELECT * FROM productos";
             PreparedStatement psSelect = miconexion.prepareStatement(sqlSelect);
             ResultSet misresultados = psSelect.executeQuery();
-            while (misresultados.next()) {// print all the cards product
+            // print all the cards product
+            while (misresultados.next()) {
                 salida.println(
                         "<div class='card'>"
                         + "<img src=" + misresultados.getString("imagen") + "alt='Imagen Producto' width='200'>"
@@ -37,7 +44,14 @@ public class IndexPageServlet extends HttpServlet {
                         + "</div>"
                 );
             }
-            
+            //comenzando sessiones necesito agregar ñas sesiones para poder hacer un insert y agregar productos
+            int quantity = peticion.getParameter("quantity");
+            HttpSession session = peticion.getSession(true);
+            String cart = session.getAttribute("cart");
+            if (cart == null) {
+                session.setAttribute("cart", cart);
+            }
+
             // close the database connection
             miconexion.close();
             salida.println("</BODY></HTML>");
@@ -45,5 +59,13 @@ public class IndexPageServlet extends HttpServlet {
             salida.println(e);
 
         }
+
+
     }
+
+    public String agregar() {
+
+        return "";
+    }
+
 }
