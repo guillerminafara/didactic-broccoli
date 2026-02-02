@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
             // Establish the connecion to the MYSQL database
             miconexion = DriverManager.getConnection(SourceURL, user, password);
             // sql query to validate email and pass
-            String sql = "SELECT * FROM usuarios WHERE email=? AND password=?";
+            String sql = "SELECT * FROM usuario WHERE email=? AND contrasena=?";
             PreparedStatement ps;
             ps = miconexion.prepareStatement(sql);
             // set the values for the prepared statement
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             // if a record is found, credentials are correct
             if (misresultados.next()) {
                 // retrieve values from the database
-                String email = misresultados.getString("email");
+                // String email = misresultados.getString("email");
                 int id_usuario = misresultados.getInt("id_usuario");
                 String nombre = misresultados.getString("nombre");
                 Cookie cookieUser = new Cookie("id_usuario", String.valueOf(id_usuario));
