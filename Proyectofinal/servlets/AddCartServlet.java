@@ -1,60 +1,66 @@
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.*;
-import java.math.BigDecimal;
-import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.util.*;
-import util.DBConnection;
 
 public class AddCartServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int productId = Integer.parseInt(peticion.getParameter("productId"));
-        int quantity = Integer.parseInt(peticion.getParameter("quantity"));
-        HtppSession session = peticion.getSession();
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
 
+        HttpSession session = request.getSession();
         List<ItemCarrito> carrito = (List<ItemCarrito>) session.getAttribute("carrito");
-        //
         if (carrito == null) {
             carrito = new ArrayList<>();
         }
-        boolean encontrado = false;
 
-        for (ItemCarrito item : carrito) {
-            if (item.getIdProducto() == productId) {
-                item.setCantidad(item.getCantidad() + quantity);
-                encontrado = true;
-                break;
-            }
-        }
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE id_producto = ?");
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
 
-        // retrieve the products from db
-        if (encontrado) {
-            try {
-                Connection conn = DBConnection.getConnection();
-                String sql = "SELECT nombre, precio FROM producto WHERE id_producto = ?";
+            if (rs.next()) {
+                // Crear item y agregar al carrito
+                ItemCarrito item = new ItemCarrito();
+                item.setIdProducto(productId);
+                item.setNombre(rs.getString("nombre"));
+                item.setPrecio(rs.getDouble("precio"));
+                item.setImagen(rs.getString("imagen"));
+                item.setCantidad(quantity);
 
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setInt(1, productId);
-                ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    ItemCarrito item = new ItemCarrito(
-                            productId,
-                            rs.getString("nombre"),
-                            rs.getDouble("precio"),
-                            quantity, rs.getString("imagen"));
+                // Si ya existe, actualizar cantidad
+                boolean encontrado = false;
+                for (ItemCarrito i : carrito) {
+                    if (i.getIdProducto() == productId) {
+                        i.setCantidad(i.getCantidad() + quantity);
+                        encontrado = true;
+                        break;
+                    }
+                }
+                if (!encontrado) {
                     carrito.add(item);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+        // Guardar carrito en sesión
         session.setAttribute("carrito", carrito);
-        respuesta.sendRedirect("CartServlet");
+
+        // Redirigir de nuevo a la página principal
+        response.sendRedirect("IndexPageServlet");
     }
 }

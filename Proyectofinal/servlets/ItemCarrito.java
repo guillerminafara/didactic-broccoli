@@ -15,6 +15,10 @@ public class ItemCarrito {
         this.imagen = imagen;
     }
 
+    public ItemCarrito() {
+
+    }
+
     public int getIdProducto() {
         return idProducto;
     }
@@ -46,5 +50,17 @@ public class ItemCarrito {
 
     public String getImagen() {
         return imagen;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 }

@@ -15,8 +15,8 @@ public class CrearUsuarioServlet extends HttpServlet {
             String emailInput = peticion.getParameter("email");
             String passwordInput = peticion.getParameter("password");
             String checkPasswordInput = peticion.getParameter("password2");
-            String nameInput = peticion.getParameter("name");
-            String surnameInput = peticion.getParameter("surname");
+            String nameInput = peticion.getParameter("nombre");
+            String surnameInput = peticion.getParameter("apellido");
 
             if (passwordInput.equals(checkPasswordInput)) {
                 String sql = "INSERT INTO usuario(nombre, apellido, email, contrasena) values (?,?,?,?)";
