@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FF9900;
+}
+        .header {
+            background-color: #131921;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #111;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #f0c14b;
+            border: 1px solid #a88734;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #e2b33c;
+        }
+
+        .login-container .forgot {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-container .forgot a {
+            color: #0066c0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-container .forgot a:hover {
+            text-decoration: underline;
+        }
+
+       .login-container button.create {
+            margin-top: 10px;
+            background-color: #ffa109;
+            border: 1px solid #a0a0a0;
+                 width: 100%;
+            padding: 12px;
+            border: 1px solid #a88734;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">AmazingStore</div>
+        <!-- <div class="user-icon">
+            👤 -->
+        </div>
+    </header>
+    <main class="container">
+        <div class="login-container">
+
+            <h2>Sign-In</h2>
+            <form action="login" method="post">
+                <label for="email">Enter youremail</label>
+                <input type="text" id="email" name="email" placeholder="example@mail.com" required>
+
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <input type="submit" value="Sign in">
+   
+
+            </form>
+                         <button class="create" onclick="window.location.href='CreateUser.html'">"Create a User"</button>
+            <div class="forgot">
+                <a href="#">Forgot your password?</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -12,14 +12,6 @@ insert into usuario (nombre, apellido, email, contrasena) values
 insert into usuario (nombre, apellido, email, contrasena) values
 ('Juan', 'Perez', 'juanperez@mail.com', 'juan123');
 
-create table administrador (
-    id_administrador int primary key auto_increment,
-  email varchar(30) not null unique,
-    contrasena varchar(30) not null
-);
-insert into administrador (email, contrasena) values
-('admin@admin.com', 'admin123');
-
 create table compra(
     id_compra int primary key auto_increment,
     id_usuario int,

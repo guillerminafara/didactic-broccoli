@@ -1,0 +1,1 @@
+regla de estilo que agregue 1 em de espacio entre las columnas en un contenedor grid
