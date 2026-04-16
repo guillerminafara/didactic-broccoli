@@ -1,0 +1,20 @@
+Los servicios de alojamiento (“hosting”) nos permiten mostrar nuestros sitios web (web sites) al mundo,
+ sin necesidad de configurar nuestro propio servidor web (web server) y tenerlo conectado 24x7, además de tener 
+ contratada una dirección IP fija (static IP). Para ilustrar su uso, nos registraremos gratuitamente en AwardSpace.com .
+
+ DNS
+
+Cada ordenador conectado a internet tiene una dirección IP (IP address). Ese número es difícil de recordar para las personas, 
+por lo que se recurre a una base de datos que almacena, junto a ciertas IP, un nombre. Es el denominado nombre de dominio (domain name).
+La base de datos es distribuída (distributed database), es decir, no hay un único sitio donde residan todas las parejas IP-nombre de dominio. 
+Cuando en su ordenador personal (personal computer) introduce un URL (Uniform Resource Locator), se hace una búsqueda de ese nombre en el 
+servidor configurado como “DNS” (Domain Name Server). Dicho servidor se denomina "resolver". Si dicho servidor no tiene en su base de datos 
+el nombre buscado, pregunta a otro, y éste a otro, sucesivamente, hasta encontrar el servidor DNS que tiene el nombre completo deseado, 
+y su correspondiente IP.
+
+En concreto, supongamos que el navegador desea dirigirse a www.example.com . Lo primero que hace el sistema operativo en el que reside 
+el navegador es ver si conoce la dirección IP de ese URL, pues puede tenerla almacenada de forma local. De lo contrario, se dirige al 
+servidor de resolución DNS al que esté conectado el ordenador, y que generalmente lo proporciona la compañía de telecomunicaciones que 
+tengamos contratada. Si este servidor no conoce tampoco la conoce, pregunta a un servidor de nombres de raíz (root DNS) . Los servidores
+ de raíz contienen las direcciones IP de otros servidores DNS, asociados a los dominios .com, .es, .org, .uk, etc. Dichos servidores 
+ se denominan “top level domain”  (TLD) servers.
